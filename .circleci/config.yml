@@ -102,11 +102,11 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [backend-deps]
+          keys: [front-deps]
       - run:
-          name: Back-end Unit Scan
+          name: front-end Unit Scan
           command: |
-             cd backend
+             cd frontend
              npm install
              npm audit --audit-level=critical
 

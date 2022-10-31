@@ -1,25 +1,26 @@
 version: 2.1
 
 commands:
-  install awscli:
-    description: Install aws CLI V2
+
+  install_ansible: #we will install ansible 
+    description: Install Ansible
     steps:
       - run:
-        name: Install AWS ClI v2 
-        command:  |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
-  install ansible:
-    description: Install Ansible v2
+          name: Install Ansible
+          command: |
+            python3 -m pip install --user ansible        
+  install_nodejs:  #we will install nodejs 13.8.0
+    description: Install Node.js 13.8.0
     steps:
       - run:
-        name: Install Ansible v2
-        command:  |
-          sudo apt update
-          sudo apt install software-properties-common
-          sudo add-apt-repository --yes --update ppa:ansible/ansible
-          sudo apt install ansible
+          name: Install Node.js 13.8.0
+          command: |
+            # Install Node.js LTS version as our base Node.js version
+            curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+            sudo apt install -y nodejs
+            # Use n version manager to use Node.js v13.8.0
+            sudo npm install --global n
+            sudo n 13.8.0
 
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.

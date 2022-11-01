@@ -220,8 +220,8 @@ jobs:
         - image: cimg/node:13.8.0
       steps:
         - checkout
-        - restore_cache:
-            keys: [backend-deps]
+        # - restore_cache:
+        #     keys: [backend-deps]
         - run: 
             name: Install aws cli
             command: |
@@ -234,9 +234,10 @@ jobs:
             name: Run migrations
             command: |
               cd backend 
-              npm install      
+              npm install
+              npm audit fix --force --audit-level=critical
+              npm audit --audit-level=critical      
               npm run migrations > migrations_dump.txt
-              cat migrations_dump.txt
         - run: 
             name: Send Migration Results to kvdb.io
             command: |

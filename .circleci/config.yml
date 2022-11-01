@@ -159,7 +159,7 @@ jobs:
 
   deploy-infrastructure: # create deploy-infrastructure
       docker:
-        - image: cimg/base:stable
+        - image: amazon/aws-cli
       steps:
         - checkout
         - run:
@@ -200,7 +200,7 @@ jobs:
 
   configure-infrastructure:  # create configure-infrastructure
       docker:
-        - image: cimg/base:stable
+        - image: python:3.7-alpine3.11
       steps:
         - checkout
         - run: apk add --update tar gzip
